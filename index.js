@@ -2,8 +2,9 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 
-var guesses = [];
+var guesses = {};
 var toGuess = null;
+var gameWinners = [];
 
 var bot = new Discord.Client({
     token: auth.token,
@@ -22,23 +23,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var cmd = args[0];
 
         switch (cmd) {
-            case 'ping':
-                bot.sendMessage({
-                    to: channelID,
-                    message: 'Pong!'
-                });
-                break;
             case 'help':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Type !guess and a number between 0 and 10 to play the guessing game.',
-                    tts: true
+                    message: 'Type !guess and a number between 0 and 10 to play the guessing game.'
                 });
                 break;
             case 'guess':
                 if (toGuess == null) {
                     toGuess = Math.floor(Math.random() * 10) + 1;
-                    console.log("set the number to: " + toGuess);
                 }
                 if (args[1] == null) {
                     bot.sendMessage({
@@ -88,8 +81,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     toGuess = null;
                 } else {
                     var winnerMessage = "The winners are: ";
-                    for(key in winners){
-                        winnerMessage += winners[key] + " "
+                    for (key in winners) {
+                        winnerMessage += winners[key] + ", ";
+                        if (gameWinners[winners[key]] == undefined) {
+                            gameWinners[winners[key]] = 1;
+                        } else {
+                            gameWinners[winners[key]] = gameWinners[winners[key]] + 1;
+                        }
                     }
                     winnerMessage += "Yay!";
                     bot.sendMessage({
@@ -99,6 +97,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     });
                     toGuess = null;
                 }
+                break;
+            case 'winners':
+                var winnerMessage = "The winners are: ";
+                for (guy in gameWinners) {
+                    winnerMessage += guy + " " + gameWinners[guy] + " times,"
+                }
+                bot.sendMessage({
+                    to: channelID,
+                    message: winnerMessage,
+                    tts: true
+                });
                 break;
             default:
                 break;
