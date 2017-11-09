@@ -104,12 +104,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     }
                 }
                 if (winners.length == 0) {
+                    var winnerNumber;
                     if(toGuess == null){
-                        toGuess = 'not set';
+                        winnerNumber = 'not set';
+                    } else {
+                        winnerNumber = toGuess;
                     }
                     bot.sendMessage({
                         to: channelID,
-                        message: 'No one won. You are all idiots.. The number was ' + toGuess,
+                        message: 'No one won. You are all idiots.. The number was ' + winnerNumber,
                         tts: true
                     });
                     toGuess = null;
