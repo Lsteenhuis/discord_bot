@@ -23,11 +23,35 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var cmd = args[0];
 
         switch (cmd) {
+            case 'sanic':
             case 'SANIC':
+                var sanic;
+                switch (Math.floor(Math.random() * 7) + 1){
+                    case 1:
+                        sanic =  'SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIC';
+                        break;
+                    case 2:
+                        sanic =  'sonic?';
+                        break;
+                    case 3:
+                        sanic =  'SnAniC';
+                        break;
+                    case 4:
+                        sanic =  'soanic';
+                        break;
+                    case 5:
+                        sanic =  'Soooooooooooooooouuunic.';
+                        break;
+                    case 6:
+                        sanic =  'mnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmarcel!.';
+                        break;
+                    case 7:
+                        sanic =  '!SANIC';
+                        break;
+                }
                 bot.sendMessage({
                     to: channelID,
-                    message: 'SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIC',
-                    tts: true
+                    message: sanic
                 });
                 break;
             case 'help':
