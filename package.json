@@ -1,0 +1,15 @@
+{
+  "name": "discord_bot",
+  "version": "1.0.0",
+  "description": "A generic discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "discord.io": "^2.5.3",
+    "winston": "^2.4.0"
+  }
+}
