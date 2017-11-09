@@ -65,14 +65,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         message: '/tts No one won. You are all idiots..'
                     });
                 } else {
-                    var message = "/tts The winners are: ";
+                    var winnerMessage = "/tts The winners are: ";
                     winners.forEach(function (winner) {
-                       message += winner + " "
+                       winnerMessage += winner + " "
                     });
-                    message += " Yayy!";
+                    winnerMessage += " Yayy!";
                     bot.sendMessage({
                         to: channelID,
-                        message: message
+                        message: winnerMessage
                     });
                 }
                 break;
@@ -81,7 +81,3 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         }
     }
 });
-
-function guessGame() {
-
-}
