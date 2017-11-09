@@ -104,6 +104,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     }
                 }
                 if (winners.length == 0) {
+                    if(toGuess == null){
+                        toGuess = 'not set';
+                    }
                     bot.sendMessage({
                         to: channelID,
                         message: 'No one won. You are all idiots.. The number was ' + toGuess,
