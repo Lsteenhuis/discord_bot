@@ -23,6 +23,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var cmd = args[0];
 
         switch (cmd) {
+            case 'SANIC':
+                bot.sendMessage({
+                    to: channelID,
+                    message: 'SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIC',
+                    tts: true
+                });
+                break;
             case 'help':
                 bot.sendMessage({
                     to: channelID,
