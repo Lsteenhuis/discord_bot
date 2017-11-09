@@ -3,7 +3,7 @@ var logger = require('winston');
 var auth = require('./auth.json');
 
 var guesses = [];
-var number = null;
+var toGuess = null;
 
 var bot = new Discord.Client({
     token: auth.token,
@@ -18,7 +18,7 @@ bot.on('ready', function (evt) {
 
 bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '!') {
-        var args = message.substring(2).split(' ');
+        var args = message.substring(1).split(' ');
         var cmd = args[0];
 
         switch (cmd) {
@@ -31,49 +31,73 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'help':
                 bot.sendMessage({
                     to: channelID,
-                    message: '/tts Type !guess and a number between 0 and 10 to play the guessing game.'
+                    message: 'Type !guess and a number between 0 and 10 to play the guessing game.',
+                    tts: true
                 });
                 break;
             case 'guess':
-                if(number == null){
-                    number = Math.floor(Math.random() * 10) + 1
+                if (toGuess == null) {
+                    toGuess = Math.floor(Math.random() * 10) + 1;
+                    console.log("set the number to: " + toGuess);
                 }
                 if (args[1] == null) {
                     bot.sendMessage({
                         to: channelID,
-                        message: '/tts Please enter a number to play'
+                        message: 'Please enter a number to play',
+                        tts: true
                     });
                 } else {
-                    guesses[user.username] = args[1];
+                    guesses[user] = args[1];
+                    if (!isNumber(args[1])) {
+                        bot.sendMessage({
+                            to: channelID,
+                            message: user + ' Enter a number you asshole',
+                            tts: true
+                        });
+                        break;
+                    }
+                    if (args[1] > 10 || args[1] < 0) {
+                        bot.sendMessage({
+                            to: channelID,
+                            message: user + ' Between 0 and 10 you cunt',
+                            tts: true
+                        });
+                        break;
+                    }
                     bot.sendMessage({
                         to: channelID,
-                        message: '/tts ' + user.username + '  has entered' + args[1]
+                        message: user + '  has entered ' + args[1],
+                        tts: true
                     });
                 }
                 break;
             case 'results':
                 var winners = [];
-                guesses.forEach(function (guess, name) {
-                    if(guess == number){
-                        winners.push(name);
+                for (key in guesses) {
+                    console.log("guess by " + key + " was: " + guesses[key]);
+                    if (parseInt(guesses[key]) == parseInt(toGuess)) {
+                        winners.push(key);
                     }
-                });
-                number = null;
-                if(winners.length = 0){
+                }
+                if (winners.length == 0) {
                     bot.sendMessage({
                         to: channelID,
-                        message: '/tts No one won. You are all idiots..'
+                        message: 'No one won. You are all idiots.. The number was ' + toGuess,
+                        tts: true
                     });
+                    toGuess = null;
                 } else {
-                    var winnerMessage = "/tts The winners are: ";
-                    winners.forEach(function (winner) {
-                       winnerMessage += winner + " "
-                    });
-                    winnerMessage += " Yayy!";
+                    var winnerMessage = "The winners are: ";
+                    for(key in winners){
+                        winnerMessage += winners[key] + " "
+                    }
+                    winnerMessage += "Yay!";
                     bot.sendMessage({
                         to: channelID,
-                        message: winnerMessage
+                        message: winnerMessage,
+                        tts: true
                     });
+                    toGuess = null;
                 }
                 break;
             default:
@@ -81,3 +105,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         }
     }
 });
+
+function isNumber(obj) {
+    return !isNaN(parseInt(obj))
+}
