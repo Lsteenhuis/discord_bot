@@ -26,7 +26,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'sanic':
             case 'SANIC':
                 var sanic;
-                switch (Math.floor(Math.random() * 7) + 1){
+                switch (Math.floor(Math.random() * 6) + 1){
                     case 1:
                         sanic =  'SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIC';
                         break;
@@ -62,7 +62,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 break;
             case 'guess':
                 if (toGuess == null) {
-                    toGuess = Math.floor(Math.random() * 10) + 1;
+                    toGuess = Math.floor(Math.random() * 9) + 1;
                 }
                 if (args[1] == null) {
                     bot.sendMessage({
