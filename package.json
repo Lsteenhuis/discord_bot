@@ -13,6 +13,7 @@
     "winston": "^2.4.0"
   },
   "dependencies": {
+    "giphy-api": "^1.2.7",
     "google-images": "^2.1.0"
   }
 }

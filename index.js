@@ -2,6 +2,8 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 const GoogleImages = require('google-images');
+var http = require('http');
+var giphy = require('giphy-api')('unHuWkw8KAp7nEAv6JFaBB9queJlWdii');
 
 const client = new GoogleImages('014542467886679922052:guxkga1igcq', 'AIzaSyAzMsr_yoPZYx8ggmpJ_QPeu-4pPETqGCk');
 var guesses = {};
@@ -28,7 +30,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'sanic':
             case 'SANIC':
                 var sanic;
-                switch (Math.floor(Math.random() * 6) + 1){
+                switch (Math.floor(Math.random() * 7) + 1){
                     case 1:
                         sanic =  'SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIC';
                         break;
@@ -53,7 +55,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 }
                 bot.sendMessage({
                     to: channelID,
-                    message: sanic
+                    message: sanic,
+                    tts: true
                 });
                 break;
             case 'help':
@@ -64,7 +67,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 break;
             case 'guess':
                 if (toGuess == null) {
-                    toGuess = Math.floor(Math.random() * 9) + 1;
+                    toGuess = Math.floor(Math.random() * 10) + 1;
                 }
                 if (args[1] == null) {
                     bot.sendMessage({
@@ -100,7 +103,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'results':
                 var winners = [];
                 for (key in guesses) {
-                    console.log("guess by " + key + " was: " + guesses[key]);
                     if (parseInt(guesses[key]) == parseInt(toGuess)) {
                         winners.push(key);
                     }
@@ -155,12 +157,64 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         message: 'Search for an image by entering keywords after !img'
                     });
                 } else {
-                    var searchTerm = '';
+                    var imgSearchTerm = '';
                     for(var i = 1; i < args.length; i++){
-                        searchTerm += args[i];
+                        imgSearchTerm += args[i];
                     }
-                    imgSearch(searchTerm, channelID);
+                    imgSearch(imgSearchTerm, channelID);
                 }
+                break;
+            case 'gif':
+                if (args[1] == null) {
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'Search for an gif by entering keywords after !gif'
+                    });
+                } else {
+                    var gifSearchParameter = "";
+                    for (var y = 1; y < args.length; y++){
+                        gifSearchParameter += args[y];
+                    }
+                    gifSearch(gifSearchParameter, channelID);
+                }
+                break;
+            case 'meaningoflife':
+                var meaning;
+                switch (Math.floor(Math.random() * 2) + 1){
+                    case 1:
+                        meaning =  'BIER!';
+                        break;
+                    case 2:
+                        meaning =  '42';
+                        break;
+                }
+                bot.sendMessage({
+                    to: channelID,
+                    message: meaning,
+                    tts: true
+                });
+                break;
+            case 'stefan':
+                var stefan;
+                switch (Math.floor(Math.random() * 4) + 1){
+                    case 1:
+                        stefan =  'STEFAN!';
+                        break;
+                    case 2:
+                        stefan =  'steeeeeeeefan';
+                        break;
+                    case 3:
+                        stefan =  'no';
+                        break;
+                    case 4:
+                        stefan =  'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnniggu';
+                        break;
+                }
+                bot.sendMessage({
+                    to: channelID,
+                    message: stefan,
+                    tts: true
+                });
                 break;
             default:
                 break;
@@ -174,10 +228,50 @@ function isNumber(obj) {
 
 function imgSearch(searchParam, channelID){
     client.search(searchParam).then(function(images) {
-        console.log(images[0].url);
-        bot.sendMessage({
-            to: channelID,
-            message: images[0].url
+        if(images[0] == undefined){
+            bot.sendMessage({
+                to: channelID,
+                message: 'img not found :c'
+            });
+        } else {
+            bot.sendMessage({
+                to: channelID,
+                message: images[0].url
+            });
+        }
+    });
+}
+
+function apiRequest(url, path, searchParam, channelID){
+    var options = {
+        host: url,
+        port: 80,
+        path: path,
+        method: 'GET'
+    };
+
+    http.request(options, function(res) {
+        res.on('data', function (chunk) {
+            console.log('BODY: ' + chunk);
         });
+    }).end();
+}
+
+function gifSearch(searchParam, channelID){
+    giphy.search({
+        q: searchParam,
+        limit: 1
+    }, function (err, res) {
+        if(res.data[0] == undefined){
+            bot.sendMessage({
+                to: channelID,
+                message: 'gif not found :c'
+            });
+        } else {
+            bot.sendMessage({
+                to: channelID,
+                message: res.data[0].url
+            });
+        }
     });
 }
