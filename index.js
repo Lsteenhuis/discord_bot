@@ -1,7 +1,9 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
+const GoogleImages = require('google-images');
 
+const client = new GoogleImages('014542467886679922052:guxkga1igcq', 'AIzaSyAzMsr_yoPZYx8ggmpJ_QPeu-4pPETqGCk');
 var guesses = {};
 var toGuess = null;
 var gameWinners = [];
@@ -146,6 +148,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     tts: true
                 });
                 break;
+            case 'img':
+                if (args[1] == null) {
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'Search for an image by entering keywords after !img'
+                    });
+                } else {
+                    var searchTerm = '';
+                    for(var i = 1; i < args.length; i++){
+                        searchTerm += args[i];
+                    }
+                    imgSearch(searchTerm, channelID);
+                }
+                break;
             default:
                 break;
         }
@@ -154,4 +170,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
 function isNumber(obj) {
     return !isNaN(parseInt(obj))
+}
+
+function imgSearch(searchParam, channelID){
+    client.search(searchParam).then(function(images) {
+        console.log(images[0].url);
+        bot.sendMessage({
+            to: channelID,
+            message: images[0].url
+        });
+    });
 }
