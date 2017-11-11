@@ -23,34 +23,6 @@ client.on('message', function (msg) {
             var args = msg.content.substring(1).split(' ');
             var cmd = args[0];
             switch (cmd) {
-                case 'sanic':
-                case 'SANIC':
-                    var sanic;
-                    switch (Math.floor(Math.random() * 7) + 1) {
-                        case 1:
-                            sanic = 'SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIC';
-                            break;
-                        case 2:
-                            sanic = 'sonic?';
-                            break;
-                        case 3:
-                            sanic = 'SnAniC';
-                            break;
-                        case 4:
-                            sanic = 'soanic';
-                            break;
-                        case 5:
-                            sanic = 'Soooooooooooooooouuunic.';
-                            break;
-                        case 6:
-                            sanic = 'mnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmarcel!.';
-                            break;
-                        case 7:
-                            sanic = '!SANIC';
-                            break;
-                    }
-                    msg.reply(sanic);
-                    break;
                 case 'help':
                     msg.reply('Type !guess and a number between 0 and 10 to play the guessing game.');
                     break;
@@ -124,10 +96,6 @@ client.on('message', function (msg) {
                     break;
                 case 'gif':
                     if (args[1] == null) {
-                        // bot.sendMessage({
-                        //     to: channelID,
-                        //     message: 'Search for an gif by entering keywords after !gif'
-                        // });
                         msg.reply('Search for an gif by entering keywords after !gif');
                     } else {
                         var gifSearchParameter = "";
@@ -148,24 +116,6 @@ client.on('message', function (msg) {
                             break;
                     }
                     msg.reply(meaning);
-                    break;
-                case 'stefan':
-                    var stefan;
-                    switch (Math.floor(Math.random() * 4) + 1) {
-                        case 1:
-                            stefan = 'STEFAN!';
-                            break;
-                        case 2:
-                            stefan = 'steeeeeeeefan';
-                            break;
-                        case 3:
-                            stefan = 'no';
-                            break;
-                        case 4:
-                            stefan = 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnniggu';
-                            break;
-                    }
-                    msg.reply(stefan);
                     break;
                 default:
                     break;
