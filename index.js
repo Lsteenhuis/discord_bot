@@ -188,3 +188,33 @@ function gifSearch(searchParam, msg) {
         }
     });
 }
+
+function jsonRequest(url, callback) {
+    request(url, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var json = JSON.parse(body);
+            callback(json);
+        } else {
+            callback(null);
+        }
+    })
+}
+
+//TODO add actual item id's in url
+//TODO set base url in static var
+function gw2salvageMerch(){
+    var silkPrice;
+    var mithrilPrice;
+    var thickLeatherPrice;
+    jsonRequest('https://api.guildwars2.com/v2/commerce/prices/19684', function (silkJson) {
+        silkPrice = silkJson.sells.unit_price;
+        jsonRequest('https://api.guildwars2.com/v2/commerce/prices/19684', function (mithrilJson) {
+            mithrilPrice = mithrilJson.sells.unit_price;
+            jsonRequest('https://api.guildwars2.com/v2/commerce/prices/19684', function (leatherJson) {
+                thickLeatherPrice = leatherJson.sells.unit_price;
+
+                //TODO price to buy salavge items for.
+            });
+        });
+    });
+}
