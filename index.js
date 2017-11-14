@@ -1,8 +1,8 @@
 var logger = require('winston');
 var auth = require('./auth.json');
 const GoogleImages = require('google-images');
-var http = require('http');
 var giphy = require('giphy-api')(auth.giphy);
+var request = require('request');
 
 
 const Discord = require("discord.js");
@@ -44,11 +44,25 @@ client.on('message', function (msg) {
                 case 'meaningoflife':
                     meaningOfLife(msg);
                     break;
+                case  'joke':
+                    onJoke(msg);
+                    break;
                 default:
                     break;
             }
         }
 });
+
+function onJoke(msg) {
+    request('http://www.reddit.com/r/jokes/top/.json', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var json = JSON.parse(body);
+            var randomNumber = Math.floor(Math.random() * 25);
+            var joke = json.data.children[randomNumber];
+            msg.reply(joke.data.title + ": \n\n" + joke.data.selftext);
+        }
+    })
+}
 
 function onGuess(msg, args) {
     if (toGuess == null) {
@@ -134,7 +148,7 @@ function gif(msg, args) {
     }
 }
 
-function meaningOfLife(msg){
+function meaningOfLife(msg) {
     var meaning;
     switch (Math.floor(Math.random() * 2) + 1) {
         case 1:
@@ -160,21 +174,6 @@ function imgSearch(searchParam, msg) {
             msg.reply(images[0].url);
         }
     });
-}
-
-function apiRequest(url, path, searchParam) {
-    var options = {
-        host: url,
-        port: 80,
-        path: path,
-        method: 'GET'
-    };
-
-    http.request(options, function (res) {
-        res.on('data', function (chunk) {
-            console.log('BODY: ' + chunk);
-        });
-    }).end();
 }
 
 function gifSearch(searchParam, msg) {
