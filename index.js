@@ -45,7 +45,7 @@ client.on('message', function (msg) {
                     onJoke(msg);
                     break;
                 case 'bekfast':
-                    onBekfast(msg);
+                    playBekfast(msg);
                     break;
                 default:
                     break;
@@ -55,17 +55,49 @@ client.on('message', function (msg) {
         }
 });
 
-function onBekfast(msg){
-    playAudioFile(msg, './bekfast.mp3');
+function playBekfast(msg){
+    playAudioFile(msg, './audio/bekfast.mp3');
 }
 
 function annoyingResponse(msg) {
     var args = msg.content.split(' ');
-    if(args.includes('marcel')){
-        msg.reply("ma ma ma ma ma marcell");
-    }
-    if(args.includes('bekfast') || args.includes('ontbijt' ) || args.includes('breakfast') || args.includes('avondeten') || args.includes('eten')){
-        onBekfast(msg);
+    for(let i = 0; i < args.length; i++){
+        if(args[i] == 'marcel' || args[i] == 'stoep' || args[i] == 'stoepker'){
+            playAudioFile(msg, './audio/marcel.m4a');
+        }
+        if(args[i] == 'bekfast' || args[i] == 'ontbijt' || args[i] == 'breakfast' || args[i] == 'avondeten' || args[i] == 'eten'){
+            playBekfast(msg);
+        }
+        if(args[i] == 'brak' || args[i] == 'bertje' || args[i] == 'kater' || args[i] == 'feest' || args[i] == 'party' || args[i] == 'cmon'){
+            playAudioFile(msg, './audio/bertje.mp3');
+        }
+        if(args[i] == 'rock' || args[i] == 'rocken' || args[i] == 'rocku'){
+            playAudioFile(msg, './audio/rocku.mp3');
+        }
+        if(args[i] == 'euro' || args[i] == 'euros' || args[i] == 'geld' || args[i] == 'money' || args[i] == 'doekoe' || args[i] == 'ekkies' || args[i] == 'ekkie'){
+            playAudioFile(msg, './audio/euros.mp3');
+        }
+        if(args[i] == 'fiets' || args[i] == 'fietsen' || args[i] == 'hasj' || args[i] == 'wiet' || args[i] == 'pi2'){
+            playAudioFile(msg, './audio/fietsen.mp3');
+        }
+        if(args[i] == 'kutweer' || args[i] == 'regen' || args[i] == 'weer' || args[i] == 'koud'){
+            playAudioFile(msg, './audio/kutweer.mp3');
+        }
+        if(args[i] == 'dol' || args[i] == 'fijn' || args[i] == 'dolfijn'){
+            playAudioFile(msg, './audio/dolfijn.mp3');
+        }
+        if(args[i] == 'gek' || args[i] == 'lijp' || args[i] == 'gestoord' || args[i] == 'crazy' || args[i] == 'leip'){
+            playAudioFile(msg, './audio/gek.mp3');
+        }
+        if(args[i] == 'welkom' || args[i] == 'welcome' || args[i] == 'kom'){
+            playAudioFile(msg, './audio/welkom_short.mp3');
+        }
+        if(args[i] == 'stoned' || args[i] == 'skaf' || args[i] == 'toeter' || args[i] == 'smoken'){
+            playAudioFile(msg, './audio/kankerstoned.mp3');
+        }
+        if(args[i] == 'station'){
+            playAudioFile(msg, './audio/station.mp3');
+        }
     }
 }
 
@@ -221,7 +253,7 @@ function playAudioFile(message, file) {
     let isBusy = isBusyInGuild(guild);
 
     if (isBusy) {
-        textChannel.send("I am currently needed in Channel '" + isBusy.name + "'.");
+        //textChannel.send("I am currently needed in Channel '" + isBusy.name + "'.");
         play = false;
     }
 
