@@ -62,10 +62,10 @@ function onBekfast(msg){
 function annoyingResponse(msg) {
     var args = msg.content.split(' ');
     if(args.includes('marcel')){
-        msg.tts("ma ma ma ma ma marcell");
+        msg.reply("ma ma ma ma ma marcell");
     }
-    if(args.includes('ontbijt' ) || args.includes('breakfast') || args.includes('avondeten')){
-
+    if(args.includes('bekfast') || args.includes('ontbijt' ) || args.includes('breakfast') || args.includes('avondeten') || args.includes('eten')){
+        onBekfast(msg);
     }
 }
 
