@@ -253,15 +253,12 @@ function playAudioFile(message, file) {
     let isBusy = isBusyInGuild(guild);
 
     if (isBusy) {
-        //textChannel.send("I am currently needed in Channel '" + isBusy.name + "'.");
         play = false;
     }
 
     if (play){
         if (voiceChannel) {
             playAudio(voiceChannel, file, textChannel);
-        } else {
-            textChannel.send("You have to be in a voice channel to do this.");
         }
     }
 }
