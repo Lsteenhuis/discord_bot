@@ -15,87 +15,90 @@ let gameWinners = [];
 
 
 client.on('message', function (msg) {
-    if (!msg.author.bot)
+    if (!msg.author.bot) {
         var args = msg.content.substring(1).split(' ');
         if (msg.content.substring(0, 1) == '!') {
-            let cmd = args[0];
-            switch (cmd) {
-                case 'help':
-                    msg.tts('Type !guess and a number between 0 and 10 to play the guessing game.');
-                    break;
-                case 'guess':
-                    onGuess(msg, args);
-                    break;
-                case 'results':
-                    onResults(msg);
-                    break;
-                case 'winners':
-                    onWinners(msg);
-                    break;
-                case 'img':
-                    img(msg, args);
-                    break;
-                case 'gif':
-                    gif(msg, args);
-                    break;
-                case 'meaningoflife':
-                    meaningOfLife(msg);
-                    break;
-                case  'joke':
-                    onJoke(msg);
-                    break;
-                case 'bekfast':
-                    playBekfast(msg);
-                    break;
-                default:
-                    break;
+            if (args.length > 0) {
+                let cmd = args[0];
+                switch (cmd) {
+                    case 'help':
+                        msg.tts('Type !guess and a number between 0 and 10 to play the guessing game.');
+                        break;
+                    case 'guess':
+                        onGuess(msg, args);
+                        break;
+                    case 'results':
+                        onResults(msg);
+                        break;
+                    case 'winners':
+                        onWinners(msg);
+                        break;
+                    case 'img':
+                        img(msg, args);
+                        break;
+                    case 'gif':
+                        gif(msg, args);
+                        break;
+                    case 'meaningoflife':
+                        meaningOfLife(msg);
+                        break;
+                    case  'joke':
+                        onJoke(msg);
+                        break;
+                    case 'bekfast':
+                        playBekfast(msg);
+                        break;
+                    default:
+                        break;
+                }
             }
         } else {
             annoyingResponse(msg);
         }
+    }
 });
 
-function playBekfast(msg){
+function playBekfast(msg) {
     playAudioFile(msg, './audio/bekfast.mp3');
 }
 
 function annoyingResponse(msg) {
     var args = msg.content.split(' ');
-    for(let i = 0; i < args.length; i++){
-        if(args[i] == 'marcel' || args[i] == 'stoep' || args[i] == 'stoepker'){
+    for (let i = 0; i < args.length; i++) {
+        if (args[i] == 'marcel' || args[i] == 'stoep' || args[i] == 'stoepker') {
             playAudioFile(msg, './audio/marcel.m4a');
         }
-        if(args[i] == 'bekfast' || args[i] == 'ontbijt' || args[i] == 'breakfast' || args[i] == 'avondeten' || args[i] == 'eten'){
+        if (args[i] == 'bekfast' || args[i] == 'ontbijt' || args[i] == 'breakfast' || args[i] == 'avondeten' || args[i] == 'eten') {
             playBekfast(msg);
         }
-        if(args[i] == 'brak' || args[i] == 'bertje' || args[i] == 'kater' || args[i] == 'feest' || args[i] == 'party' || args[i] == 'cmon'){
+        if (args[i] == 'brak' || args[i] == 'bertje' || args[i] == 'kater' || args[i] == 'feest' || args[i] == 'party' || args[i] == 'cmon') {
             playAudioFile(msg, './audio/bertje.mp3');
         }
-        if(args[i] == 'rock' || args[i] == 'rocken' || args[i] == 'rocku'){
+        if (args[i] == 'rock' || args[i] == 'rocken' || args[i] == 'rocku') {
             playAudioFile(msg, './audio/rocku.mp3');
         }
-        if(args[i] == 'euro' || args[i] == 'euros' || args[i] == 'geld' || args[i] == 'money' || args[i] == 'doekoe' || args[i] == 'ekkies' || args[i] == 'ekkie'){
+        if (args[i] == 'euro' || args[i] == 'euros' || args[i] == 'geld' || args[i] == 'money' || args[i] == 'doekoe' || args[i] == 'ekkies' || args[i] == 'ekkie') {
             playAudioFile(msg, './audio/euros.mp3');
         }
-        if(args[i] == 'fiets' || args[i] == 'fietsen' || args[i] == 'hasj' || args[i] == 'wiet' || args[i] == 'pi2'){
+        if (args[i] == 'fiets' || args[i] == 'fietsen' || args[i] == 'hasj' || args[i] == 'wiet' || args[i] == 'pi2') {
             playAudioFile(msg, './audio/fietsen.mp3');
         }
-        if(args[i] == 'kutweer' || args[i] == 'regen' || args[i] == 'weer' || args[i] == 'koud'){
+        if (args[i] == 'kutweer' || args[i] == 'regen' || args[i] == 'weer' || args[i] == 'koud') {
             playAudioFile(msg, './audio/kutweer.mp3');
         }
-        if(args[i] == 'dol' || args[i] == 'fijn' || args[i] == 'dolfijn'){
+        if (args[i] == 'dol' || args[i] == 'fijn' || args[i] == 'dolfijn') {
             playAudioFile(msg, './audio/dolfijn.mp3');
         }
-        if(args[i] == 'gek' || args[i] == 'lijp' || args[i] == 'gestoord' || args[i] == 'crazy' || args[i] == 'leip'){
+        if (args[i] == 'gek' || args[i] == 'lijp' || args[i] == 'gestoord' || args[i] == 'crazy' || args[i] == 'leip') {
             playAudioFile(msg, './audio/gek.mp3');
         }
-        if(args[i] == 'welkom' || args[i] == 'welcome' || args[i] == 'kom'){
+        if (args[i] == 'welkom' || args[i] == 'welcome' || args[i] == 'kom') {
             playAudioFile(msg, './audio/welkom_short.mp3');
         }
-        if(args[i] == 'stoned' || args[i] == 'skaf' || args[i] == 'toeter' || args[i] == 'smoken'){
+        if (args[i] == 'stoned' || args[i] == 'skaf' || args[i] == 'toeter' || args[i] == 'smoken') {
             playAudioFile(msg, './audio/kankerstoned.mp3');
         }
-        if(args[i] == 'station'){
+        if (args[i] == 'station') {
             playAudioFile(msg, './audio/station.mp3');
         }
     }
@@ -256,7 +259,7 @@ function playAudioFile(message, file) {
         play = false;
     }
 
-    if (play){
+    if (play) {
         if (voiceChannel) {
             playAudio(voiceChannel, file, textChannel);
         }
