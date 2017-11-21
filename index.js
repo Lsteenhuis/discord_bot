@@ -78,7 +78,7 @@ function annoyingResponse(msg) {
             playAudioFile(msg, './audio/rocku.mp3');
         }
         if (args[i] == 'euro' || args[i] == 'euros' || args[i] == 'geld' || args[i] == 'money' || args[i] == 'doekoe' || args[i] == 'ekkies' || args[i] == 'ekkie') {
-            playAudioFile(msg, './audio/euros.mp3');
+            onEuros(msg);
         }
         if (args[i] == 'fiets' || args[i] == 'fietsen' || args[i] == 'hasj' || args[i] == 'wiet' || args[i] == 'pi2') {
             playAudioFile(msg, './audio/fietsen.mp3');
@@ -101,6 +101,15 @@ function annoyingResponse(msg) {
         if (args[i] == 'station') {
             playAudioFile(msg, './audio/station.mp3');
         }
+    }
+}
+
+
+function onEuros(msg) {
+    if (Math.random() > 0.5) {
+        playAudioFile(msg, './audio/euros.mp3');
+    } else {
+        playAudioFile(msg, './audio/euros2.mp3');
     }
 }
 
