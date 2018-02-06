@@ -101,15 +101,117 @@ function annoyingResponse(msg) {
         if (args[i] == 'station') {
             playAudioFile(msg, './audio/station.mp3');
         }
+        if (args[i] == 'x' || args[i] == 'dmx' || args[i] == 'X' || args[i] == 'DMX') {
+            playAudioFile(msg, './audio/x.mp3');
+        }
+        if (args[i] == 'uhuh') {
+            playAudioFile(msg, './audio/uhuh.mp3');
+        }
+        if (args[i] == 'snoop' || args[i] == 'dogg') {
+            playAudioFile(msg, './audio/snoop_dogg.mp3');
+        }
+        if (args[i] == 'bitch') {
+            playAudioFile(msg, './audio/bitch.mp3');
+        }
+        if (args[i] == 'cash' || args[i] == 'cream' || args[i] == 'dolla' || args[i] == 'dollar') {
+            playAudioFile(msg, './audio/cream.mp3');
+        }
+        if (args[i] == 'praten' || args[i] == 'galema') {
+            playAudioFile(msg, './audio/galema.mp3');
+        }
+        if (args[i] == 'gas') {
+            playAudioFile(msg, './audio/gas.mp3');
+        }
+        if (args[i] == 'ja' || args[i] == 'yes') {
+            onJa(msg);
+        }
+        if (args[i] == 'waarom' || args[i] == 'waarom?') {
+            onWaarom(msg);
+        }
+        if (args[i] == 'wat?') {
+            playAudioFile(msg, './audio/wat.mp3');
+        }
+        if (args[i] == 'jammer') {
+            playAudioFile(msg, './audio/jammer.mp3');
+        }
+        if (args[i] == 'combo' || args[i] == 'wombo') {
+            playAudioFile(msg, './audio/combo.mp3');
+        }
+        if (args[i] == 'boem' || args[i] == 'biem') {
+            playAudioFile(msg, './audio/biem.mp3');
+        }
+        if (args[i] == 'tijd' || args[i] == 'time' || args[i] == 'aint') {
+            onTime(msg);
+        }
+        if (args[i] == 'gevonden' || args[i] == 'find' || args[i] == 'found') {
+            playAudioFile(msg, './audio/pick.mp3');
+        }
+        if (args[i] == 'sanic' || args[i] == 'sonic' || args[i] == 'lex' || args[i] == 'lars' || args[i] == 'john' || args[i] == 'vincent') {
+            playAudioFile(msg, './audio/SANIC.mp3');
+        }
+        if (args[i] == 'hallo' || args[i] == 'kloontje') {
+            playAudioFile(msg, './audio/kloontje.mp3');
+        }
+        if (args[i] == 'rik' || args[i] == 'ferwerda') {
+            playAudioFile(msg, './audio/brilsmurf.mp3');
+        }
+        if (args[i] == 'stefan' || args[i] == 'datema') {
+            playAudioFile(msg, './audio/crackie.mp3');
+        }
+        if (args[i] == 'pradi' || args[i] == 'predi' || args[i] == 'pradiban' || args[i] == 'prediben') {
+            playAudioFile(msg, './audio/pradi.mp3');
+        }
+        if (args[i] == 'joint' || args[i] == 'jointjes') {
+            playAudioFile(msg, './audio/jointjes.mp3');
+        }
+        if (args[i] == 'krakaka' || args[i] == 'shots' || args[i] == 'gunshots' || args[i] == 'schoten') {
+            playAudioFile(msg, './audio/krakaka.mp3');
+        }
+        if (args[i] == 'gucci' || args[i] == 'gang') {
+            playAudioFile(msg, './audio/guccigang.mp3');
+        }
+        if (args[i] == 'oh' || args[i] == 'wa') {
+            playAudioFile(msg, './audio/ohwaha.mp3');
+        }
+        if (args[i] == 'damn' || args[i] == 'dayum') {
+            playAudioFile(msg, './audio/dayum.mp3');
+        }
+    }
+}
+
+function onTime(msg) {
+    if(Math.random() < 0.5){
+        playAudioFile(msg, './audio/time.mp3');
+    } else {
+        playAudioFile(msg, './audio/time2.mp3');
+    }
+}
+
+function onWaarom(msg){
+    if(Math.random() < 0.5){
+        playAudioFile(msg, './audio/waarom.mp3');
+    } else {
+        playAudioFile(msg, './audio/waarom2.mp3');
+    }
+}
+
+function onJa(msg){
+    if(Math.random() < 0.5){
+        playAudioFile(msg, './audio/ja.mp3');
+    } else {
+        playAudioFile(msg, './audio/ja2.mp3');
     }
 }
 
 
 function onEuros(msg) {
-    if (Math.random() > 0.5) {
+    const random = Math.random();
+    if (random < 0.3) {
         playAudioFile(msg, './audio/euros.mp3');
-    } else {
+    } else if(random < 0.6)  {
         playAudioFile(msg, './audio/euros2.mp3');
+    } else {
+        playAudioFile(msg, './audio/cream.mp3');
     }
 }
 
