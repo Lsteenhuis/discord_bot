@@ -16,7 +16,7 @@ let gameWinners = [];
 
 client.on('message', function (msg) {
     if (!msg.author.bot) {
-        var args = msg.content.substring(1).split(' ');
+        let args = msg.content.substring(1).split(' ');
         if (msg.content.substring(0, 1) == '!') {
             if (args.length > 0) {
                 let cmd = args[0];
@@ -58,132 +58,196 @@ client.on('message', function (msg) {
     }
 });
 
-function playBekfast(msg) {
-    playAudioFile(msg, './audio/bekfast.mp3');
-}
-
 function annoyingResponse(msg) {
-    var args = msg.content.split(' ');
+    let args = msg.content.split(' ');
     for (let i = 0; i < args.length; i++) {
         if (args[i] == 'marcel' || args[i] == 'stoep' || args[i] == 'stoepker') {
             playAudioFile(msg, './audio/marcel.m4a');
+            return;
         }
         if (args[i] == 'bekfast' || args[i] == 'ontbijt' || args[i] == 'breakfast' || args[i] == 'avondeten' || args[i] == 'eten') {
             playBekfast(msg);
+            return;
         }
         if (args[i] == 'brak' || args[i] == 'bertje' || args[i] == 'kater' || args[i] == 'feest' || args[i] == 'party' || args[i] == 'cmon') {
             playAudioFile(msg, './audio/bertje.mp3');
+            return;
         }
         if (args[i] == 'rock' || args[i] == 'rocken' || args[i] == 'rocku') {
             playAudioFile(msg, './audio/rocku.mp3');
+            return;
         }
         if (args[i] == 'euro' || args[i] == 'euros' || args[i] == 'geld' || args[i] == 'money' || args[i] == 'doekoe' || args[i] == 'ekkies' || args[i] == 'ekkie') {
             onEuros(msg);
+            return;
         }
         if (args[i] == 'fiets' || args[i] == 'fietsen' || args[i] == 'hasj' || args[i] == 'wiet' || args[i] == 'pi2') {
             playAudioFile(msg, './audio/fietsen.mp3');
+            return;
         }
         if (args[i] == 'kutweer' || args[i] == 'regen' || args[i] == 'weer' || args[i] == 'koud') {
             playAudioFile(msg, './audio/kutweer.mp3');
+            return;
         }
         if (args[i] == 'dol' || args[i] == 'fijn' || args[i] == 'dolfijn') {
             playAudioFile(msg, './audio/dolfijn.mp3');
+            return;
         }
         if (args[i] == 'gek' || args[i] == 'lijp' || args[i] == 'gestoord' || args[i] == 'crazy' || args[i] == 'leip') {
             playAudioFile(msg, './audio/gek.mp3');
+            return;
         }
         if (args[i] == 'welkom' || args[i] == 'welcome' || args[i] == 'kom') {
             playAudioFile(msg, './audio/welkom_short.mp3');
+            return;
         }
         if (args[i] == 'stoned' || args[i] == 'skaf' || args[i] == 'toeter' || args[i] == 'smoken') {
             playAudioFile(msg, './audio/kankerstoned.mp3');
+            return;
         }
         if (args[i] == 'station') {
             playAudioFile(msg, './audio/station.mp3');
+            return;
         }
         if (args[i] == 'x' || args[i] == 'dmx' || args[i] == 'X' || args[i] == 'DMX') {
             playAudioFile(msg, './audio/x.mp3');
+            return;
         }
         if (args[i] == 'uhuh') {
             playAudioFile(msg, './audio/uhuh.mp3');
+            return;
         }
         if (args[i] == 'snoop' || args[i] == 'dogg') {
             playAudioFile(msg, './audio/snoop_dogg.mp3');
+            return;
         }
         if (args[i] == 'bitch') {
             playAudioFile(msg, './audio/bitch.mp3');
+            return;
         }
         if (args[i] == 'cash' || args[i] == 'cream' || args[i] == 'dolla' || args[i] == 'dollar') {
             playAudioFile(msg, './audio/cream.mp3');
+            return;
         }
         if (args[i] == 'praten' || args[i] == 'galema') {
             playAudioFile(msg, './audio/galema.mp3');
+            return;
         }
         if (args[i] == 'gas') {
             playAudioFile(msg, './audio/gas.mp3');
+            return;
         }
         if (args[i] == 'ja' || args[i] == 'yes') {
             onJa(msg);
+            return;
         }
         if (args[i] == 'waarom' || args[i] == 'waarom?') {
             onWaarom(msg);
+            return;
         }
         if (args[i] == 'wat?') {
             playAudioFile(msg, './audio/wat.mp3');
+            return;
         }
         if (args[i] == 'jammer') {
             playAudioFile(msg, './audio/jammer.mp3');
+            return;
         }
         if (args[i] == 'combo' || args[i] == 'wombo') {
             playAudioFile(msg, './audio/combo.mp3');
+            return;
         }
         if (args[i] == 'boem' || args[i] == 'biem') {
             playAudioFile(msg, './audio/biem.mp3');
+            return;
         }
         if (args[i] == 'tijd' || args[i] == 'time' || args[i] == 'aint') {
             onTime(msg);
+            return;
         }
         if (args[i] == 'gevonden' || args[i] == 'find' || args[i] == 'found') {
             playAudioFile(msg, './audio/pick.mp3');
-        }
-        if (args[i] == 'sanic' || args[i] == 'sonic' || args[i] == 'lex' || args[i] == 'lars' || args[i] == 'john' || args[i] == 'vincent') {
-            playAudioFile(msg, './audio/SANIC.mp3');
+            return;
         }
         if (args[i] == 'hallo' || args[i] == 'kloontje') {
             playAudioFile(msg, './audio/kloontje.mp3');
+            return;
         }
         if (args[i] == 'rik' || args[i] == 'ferwerda') {
             playAudioFile(msg, './audio/brilsmurf.mp3');
+            return;
         }
         if (args[i] == 'stefan' || args[i] == 'datema') {
             playAudioFile(msg, './audio/crackie.mp3');
+            return;
         }
         if (args[i] == 'pradi' || args[i] == 'predi' || args[i] == 'pradiban' || args[i] == 'prediben') {
             playAudioFile(msg, './audio/pradi.mp3');
+            return;
         }
         if (args[i] == 'joint' || args[i] == 'jointjes') {
             playAudioFile(msg, './audio/jointjes.mp3');
+            return;
         }
         if (args[i] == 'krakaka' || args[i] == 'shots' || args[i] == 'gunshots' || args[i] == 'schoten') {
             playAudioFile(msg, './audio/krakaka.mp3');
+            return;
         }
         if (args[i] == 'gucci' || args[i] == 'gang') {
             playAudioFile(msg, './audio/guccigang.mp3');
+            return;
         }
         if (args[i] == 'oh' || args[i] == 'wa') {
             playAudioFile(msg, './audio/ohwaha.mp3');
+            return;
         }
         if (args[i] == 'damn' || args[i] == 'dayum') {
             playAudioFile(msg, './audio/dayum.mp3');
+            return;
+        }
+        if (args[i] == 'slokje') {
+            playAudioFile(msg, './audio/eem_slokje.mp3');
+            return;
+        }
+        if (args[i] == 'lekker') {
+            playAudioFile(msg, './audio/lekker.mp3');
+            return;
+        }
+        if (args[i] == 'heet' || args[i] == 'vuren') {
+            playAudioFile(msg, './audio/hetere_vuren.mp3');
+            return;
+        }
+        if (args[i] == 'hatsikidee') {
+            playAudioFile(msg, './audio/hatsikidee.mp3');
+            return;
+        }
+        if (args[i] == 'giet' || args[i] == 'oan') {
+            playAudioFile(msg, './audio/giet_oan.mp3');
+            return;
+        }
+        if (args[i] == 'nieuwe') {
+            playAudioFile(msg, './audio/een_nieuwe.mp3');
+            return;
+        }
+        if (args[i] == 'actie') {
+            playAudioFile(msg, './audio/actie.mp3');
+            return;
+        }
+        if (args[i] == 'komen' || args[i] == 'gaan') {
+            playAudioFile(msg, './audio/komen_gaan.mp3');
+            return;
         }
     }
 }
 
 function onTime(msg) {
-    if(Math.random() < 0.5){
+    const random = Math.random();
+    if (random < 0.3) {
         playAudioFile(msg, './audio/time.mp3');
-    } else {
+    } else if(random < 0.6)  {
         playAudioFile(msg, './audio/time2.mp3');
+    } else {
+        playAudioFile(msg, './audio/komen_gaan.mp3');
     }
 }
 
@@ -193,6 +257,10 @@ function onWaarom(msg){
     } else {
         playAudioFile(msg, './audio/waarom2.mp3');
     }
+}
+
+function playBekfast(msg) {
+    playAudioFile(msg, './audio/bekfast.mp3');
 }
 
 function onJa(msg){
@@ -280,7 +348,7 @@ function onResults(msg) {
 
 function onWinners(msg) {
     let winnerMessage = "The winners are: ";
-    for (guy in gameWinners) {
+    for (let guy in gameWinners) {
         winnerMessage += guy + " " + gameWinners[guy] + " times,"
     }
     msg.reply(winnerMessage);
