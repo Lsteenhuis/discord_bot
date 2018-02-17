@@ -178,7 +178,7 @@ function annoyingResponse(msg) {
             return;
         }
         if (args[i] == 'stefan' || args[i] == 'datema') {
-            playAudioFile(msg, './audio/crackie.mp3');
+            onStefan(msg);
             return;
         }
         if (args[i] == 'pradi' || args[i] == 'predi' || args[i] == 'pradiban' || args[i] == 'prediben') {
@@ -241,6 +241,15 @@ function annoyingResponse(msg) {
             onLex(msg);
             return;
         }
+    }
+}
+
+function onStefan(msg){
+    const random  = Math.random();
+    if(random < 0.5){
+        playAudioFile(msg, './audio/crackie.mp3');
+    } else {
+        msg.reply('https://media.discordapp.net/attachments/201487211508662272/414550510423638040/pp.png?width=419&height=419');
     }
 }
 
