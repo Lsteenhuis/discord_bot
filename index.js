@@ -62,7 +62,7 @@ function annoyingResponse(msg) {
     let args = msg.content.split(' ');
     for (let i = 0; i < args.length; i++) {
         if (args[i] == 'marcel' || args[i] == 'stoep' || args[i] == 'stoepker') {
-            playAudioFile(msg, './audio/marcel.m4a');
+            onMarcel(msg);
             return;
         }
         if (args[i] == 'bekfast' || args[i] == 'ontbijt' || args[i] == 'breakfast' || args[i] == 'avondeten' || args[i] == 'eten') {
@@ -174,7 +174,7 @@ function annoyingResponse(msg) {
             return;
         }
         if (args[i] == 'rik' || args[i] == 'ferwerda') {
-            playAudioFile(msg, './audio/brilsmurf.mp3');
+            onRik(msg);
             return;
         }
         if (args[i] == 'stefan' || args[i] == 'datema') {
@@ -237,6 +237,30 @@ function annoyingResponse(msg) {
             playAudioFile(msg, './audio/komen_gaan.mp3');
             return;
         }
+        if(args[i] == 'lex' || args[i] == 'hermans'){
+            onLex(msg);
+            return;
+        }
+    }
+}
+
+function onRik(msg) {
+    const random = Math.random();
+    if(random < 0.3){
+        msg.reply('https://media-exp2.licdn.com/media/AAEAAQAAAAAAAAigAAAAJDdmN2JlZWUxLTBkZDktNDk1Mi1hMTNhLWEzZmIxZTUxYzliYQ.jpg');
+    } else if (random < 0.6) {
+        playAudioFile(msg, './audio/brilsmurf.mp3');
+    } else  {
+        msg.reply('https://www.idmp1.com/wp-content/uploads/2015/03/wiki_fotolia_68871205_m.jpg');
+    }
+}
+
+function onLex(msg){
+    const random = Math.random();
+    if (random < 0.5) {
+        playAudioFile(msg, './audio/hodl.mp3');
+    } else  {
+        msg.reply('https://cdn.vox-cdn.com/thumbor/-D-5v81ETLIBjrs2l_Fw5ZIBZeE=/0x0:960x729/920x613/filters:focal(322x231:474x383)/cdn.vox-cdn.com/uploads/chorus_image/image/56734989/nintchdbpict000297124102.0.jpg');
     }
 }
 
@@ -251,6 +275,16 @@ function onTime(msg) {
     }
 }
 
+
+playAudioFile(msg, './audio/marcel.m4a');
+
+function onMarcel(msg){
+    if(Math.random() < 0.5){
+        playAudioFile(msg, './audio/marcel.m4a');
+    } else {
+        playAudioFile(msg, './audio/marcel2.mp3');
+    }
+}
 function onWaarom(msg){
     if(Math.random() < 0.5){
         playAudioFile(msg, './audio/waarom.mp3');
