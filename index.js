@@ -246,11 +246,13 @@ function annoyingResponse(msg) {
 
 function onRik(msg) {
     const random = Math.random();
-    if(random < 0.3){
-        msg.reply('https://media-exp2.licdn.com/media/AAEAAQAAAAAAAAigAAAAJDdmN2JlZWUxLTBkZDktNDk1Mi1hMTNhLWEzZmIxZTUxYzliYQ.jpg');
-    } else if (random < 0.6) {
+    if(random < 0.1){
+        msg.reply('http://178.62.204.84/heil_rik.jpg');
+    } else if (random < 0.4) {
         playAudioFile(msg, './audio/brilsmurf.mp3');
-    } else  {
+    } else if(random < 0.7){
+        msg.reply('https://media-exp2.licdn.com/media/AAEAAQAAAAAAAAigAAAAJDdmN2JlZWUxLTBkZDktNDk1Mi1hMTNhLWEzZmIxZTUxYzliYQ.jpg');
+    } else {
         msg.reply('https://www.idmp1.com/wp-content/uploads/2015/03/wiki_fotolia_68871205_m.jpg');
     }
 }
