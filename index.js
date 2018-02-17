@@ -275,9 +275,6 @@ function onTime(msg) {
     }
 }
 
-
-playAudioFile(msg, './audio/marcel.m4a');
-
 function onMarcel(msg){
     if(Math.random() < 0.5){
         playAudioFile(msg, './audio/marcel.m4a');
